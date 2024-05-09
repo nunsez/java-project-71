@@ -11,7 +11,8 @@ import java.util.concurrent.Callable;
 @Command(
     name = "gendiff",
     description = "Compares two configuration files and shows a difference.",
-    sortOptions = false
+    sortOptions = false,
+    version = "gendiff 0.0.1"
 )
 public class Cli implements Callable<Integer> {
 
@@ -32,7 +33,8 @@ public class Cli implements Callable<Integer> {
 
     @Option(
         names = { "-V", "--version" },
-        description = "Print version information and exit."
+        description = "Print version information and exit.",
+        versionHelp = true
     )
     boolean version;
 
