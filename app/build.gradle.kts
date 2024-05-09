@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/commons-cli/commons-cli
-    implementation("commons-cli:commons-cli:1.7.0")
+    // https://picocli.info
+    implementation("info.picocli:picocli:4.7.6")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
