@@ -12,6 +12,9 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    implementation("commons-cli:commons-cli:1.7.0")
+
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
@@ -22,8 +25,4 @@ application {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-tasks.getByName<JavaExec>("run") {
-    standardInput = System.`in`
 }
