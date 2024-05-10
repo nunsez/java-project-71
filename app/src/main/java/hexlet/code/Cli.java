@@ -4,8 +4,8 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
-import java.util.Optional;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @Command(
@@ -41,21 +41,21 @@ public class Cli implements Callable<Integer> {
     @Parameters(
         index = "0",
         description = "path to first file",
-        paramLabel = "filepath1",
-        defaultValue = Option.NULL_VALUE
+        paramLabel = "filepath1"
     )
-    Optional<File> filepath1;
+    Path filepath1;
 
     @Parameters(
         index = "1",
         description = "path to second file",
-        paramLabel = "filepath2",
-        defaultValue = Option.NULL_VALUE
+        paramLabel = "filepath2"
     )
-    Optional<File> filepath2;
+    Path filepath2;
 
     @Override
-    public Integer call() {
+    public Integer call() throws IOException {
+        var diff = Differ.generate(filepath1, filepath2);
+        System.out.println(diff);
         return 0;
     }
 }
