@@ -32,30 +32,28 @@ public class Differ {
             .map((x) -> getDiffitem(x, node1, node2))
             .toList();
 
-        return DiffItem.Object(fieldName, children);
+        return DiffItem.object(fieldName, children);
     }
 
     private static DiffItem getDiffitem(String fieldName, JsonNode obj1, JsonNode obj2) {
         var oldValue = obj1.get(fieldName);
         var newValue = obj2.get(fieldName);
 
+        DiffItem item;
+
         if (!obj1.has(fieldName)) {
-            return DiffItem.Added(fieldName, newValue);
+            item = DiffItem.added(fieldName, newValue);
+        } else if (!obj2.has(fieldName)) {
+            item = DiffItem.removed(fieldName, oldValue);
+        } else if (oldValue.isContainerNode() && newValue.isContainerNode()) {
+            item = generateObject(fieldName, oldValue, newValue);
+        } else if (oldValue.equals(newValue)) {
+            item = DiffItem.unchanged(fieldName, oldValue);
+        } else {
+            item = DiffItem.changed(fieldName, oldValue, newValue);
         }
 
-        if (!obj2.has(fieldName)) {
-            return DiffItem.Removed(fieldName, oldValue);
-        }
-
-        if (oldValue.isContainerNode() && newValue.isContainerNode()) {
-            return generateObject(fieldName, oldValue, newValue);
-        }
-
-        if (oldValue.equals(newValue)) {
-            return DiffItem.Unchanged(fieldName, oldValue);
-        }
-
-        return DiffItem.Changed(fieldName, oldValue, newValue);
+        return item;
     }
 
 }

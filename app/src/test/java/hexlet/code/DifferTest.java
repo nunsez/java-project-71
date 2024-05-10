@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DifferTest {
 
-    private final static Path workingDir = Path.of("src/test/resources/hexlet/code");
+    private static final Path WORKING_DIR = Path.of("src/test/resources/hexlet/code");
 
     @Test
     void generatePlain() throws IOException {
@@ -23,7 +23,7 @@ class DifferTest {
     }
 
     private Path resourcePath(String relativePath) {
-        return workingDir.resolve(relativePath);
+        return WORKING_DIR.resolve(relativePath);
     }
 
     private String resourceContent(String relativePath) {

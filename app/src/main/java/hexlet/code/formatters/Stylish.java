@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class Stylish {
 
-    private final static String INDENT = " ";
+    private static final String INDENT = " ";
 
-    private final static int INDENT_COUNT = 2;
+    private static final int INDENT_COUNT = 2;
 
     public static String format(DiffItem diff) {
         return genStylishLine(diff, 0);
@@ -54,6 +54,7 @@ public class Stylish {
                 sb.append(nestedObjectFields);
                 sb.append(indent).append("\n}");
             }
+            default -> throw new IllegalArgumentException("Invalid state: " + diff.state());
         }
 
         return sb.toString();
