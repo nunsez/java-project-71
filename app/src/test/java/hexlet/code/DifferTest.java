@@ -55,6 +55,16 @@ class DifferTest {
         assertThat(check).isEqualTo(result);
     }
 
+    @Test
+    void generateJsonJson() throws IOException {
+        var filePath1 = resourcePath("file1.json");
+        var filePath2 = resourcePath("file2.json");
+
+        var check = Differ.generate(filePath1, filePath2, "json");
+
+        assertThat(check).isNotBlank();
+    }
+
     private Path resourcePath(String relativePath) {
         return WORKING_DIR.resolve(relativePath);
     }
@@ -68,4 +78,5 @@ class DifferTest {
             throw new RuntimeException(e);
         }
     }
+
 }
