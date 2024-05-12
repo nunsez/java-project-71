@@ -12,9 +12,20 @@ class DifferTest {
     private static final Path WORKING_DIR = Path.of("src/test/resources/hexlet/code");
 
     @Test
-    void generatePlain() throws IOException {
+    void generatePlainJson() throws IOException {
         var filepath1 = resourcePath("plain-1.json");
         var filepath2 = resourcePath("plain-2.json");
+        var result = resourceContent("plain-result.txt");
+
+        var check = Differ.generate(filepath1, filepath2);
+
+        assertThat(check).isEqualTo(result);
+    }
+
+    @Test
+    void generatePlainYaml() throws IOException {
+        var filepath1 = resourcePath("plain-1.yml");
+        var filepath2 = resourcePath("plain-2.yaml");
         var result = resourceContent("plain-result.txt");
 
         var check = Differ.generate(filepath1, filepath2);

@@ -3,18 +3,15 @@ package hexlet.code;
 import com.fasterxml.jackson.databind.JsonNode;
 import hexlet.code.formatters.Stylish;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.TreeSet;
 
 public class Differ {
 
     public static String generate(Path filepath1, Path filepath2) throws IOException {
-        var content1 = Files.readString(filepath1);
-        var content2 = Files.readString(filepath2);
+        var node1 = Parser.parse(filepath1);
+        var node2 = Parser.parse(filepath2);
 
-        var node1 = Parser.parse(content1, "json");
-        var node2 = Parser.parse(content2, "json");
         var diff = generateObject(null, node1, node2);
 
         return Stylish.format(diff);
