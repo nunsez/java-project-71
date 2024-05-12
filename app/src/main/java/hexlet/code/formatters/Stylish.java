@@ -2,7 +2,11 @@ package hexlet.code.formatters;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import hexlet.code.DiffItem;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Stylish {
 
@@ -69,10 +73,30 @@ public class Stylish {
     }
 
     private static String jsArrayToString(JsonNode node) {
-        return node.toPrettyString();
+        var joiner = Collectors.joining(", ", "[", "]");
+
+        return iteratorToStream(node.elements())
+            .map(Stylish::nodeToString)
+            .collect(joiner);
     }
 
     private static String jsObjectToString(JsonNode node) {
-        return node.toPrettyString();
+        var joiner = Collectors.joining(", ", "{", "}");
+
+        return iteratorToStream(node.fields())
+            .map(Stylish::objectEntryToString)
+            .collect(joiner);
+    }
+
+    private static <T> Stream<T> iteratorToStream(Iterator<T> iterator) {
+        return Stream
+            .iterate(iterator, Iterator::hasNext, UnaryOperator.identity())
+            .map(Iterator::next);
+    }
+
+    private static String objectEntryToString(Map.Entry<String, JsonNode> entry) {
+        var key = entry.getKey();
+        var value = nodeToString(entry.getValue());
+        return key + "=" + value;
     }
 }

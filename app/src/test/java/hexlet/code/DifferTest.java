@@ -33,6 +33,17 @@ class DifferTest {
         assertThat(check).isEqualTo(result);
     }
 
+    @Test
+    void generateNestedJson() throws IOException {
+        var filepath1 = resourcePath("nested-1.json");
+        var filepath2 = resourcePath("nested-2.json");
+        var result = resourceContent("nested-result.txt");
+
+        var check = Differ.generate(filepath1, filepath2);
+
+        assertThat(check).isEqualTo(result);
+    }
+
     private Path resourcePath(String relativePath) {
         return WORKING_DIR.resolve(relativePath);
     }

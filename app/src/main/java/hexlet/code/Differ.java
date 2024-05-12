@@ -42,7 +42,7 @@ public class Differ {
             item = DiffItem.added(fieldName, newValue);
         } else if (!obj2.has(fieldName)) {
             item = DiffItem.removed(fieldName, oldValue);
-        } else if (oldValue.isContainerNode() && newValue.isContainerNode()) {
+        } else if (oldValue.isObject() && newValue.isObject()) {
             item = generateObject(fieldName, oldValue, newValue);
         } else if (oldValue.equals(newValue)) {
             item = DiffItem.unchanged(fieldName, oldValue);
