@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import java.util.TreeSet;
 
-public class Differ {
+public final class Differ {
 
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         var node1 = Parser.parse(filePath1);

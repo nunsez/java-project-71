@@ -5,7 +5,7 @@ import hexlet.code.DiffItem;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-public class Plain implements Formatter {
+public final class Plain implements Formatter {
 
     private static final String DELIMITER = "\n";
 

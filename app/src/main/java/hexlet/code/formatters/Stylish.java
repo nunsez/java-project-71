@@ -8,7 +8,7 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Stylish implements Formatter {
+public final class Stylish implements Formatter {
 
     private static final String INDENT = " ";
 

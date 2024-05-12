@@ -5,7 +5,7 @@ import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 
-public class Formatter {
+public final class Formatter {
 
     public static String format(DiffItem diff, String formatName) throws JsonProcessingException {
         var formatter = switch (formatName) {

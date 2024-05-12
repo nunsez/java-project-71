@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class Parser {
+public final class Parser {
 
     public static JsonNode parse(String filePath) throws IOException {
         var normalizedPath = Path.of(filePath).normalize().toAbsolutePath();

@@ -12,7 +12,7 @@ import java.util.concurrent.Callable;
     sortOptions = false,
     version = "gendiff 0.0.1"
 )
-public class Cli implements Callable<Integer> {
+public final class Cli implements Callable<Integer> {
 
     @Option(
         names = { "-f", "--format" },
@@ -20,35 +20,35 @@ public class Cli implements Callable<Integer> {
         defaultValue = "stylish",
         paramLabel = "format"
     )
-    String format;
+    private String format;
 
     @Option(
         names = { "-h", "--help" },
         description = "Show this help message and exit.",
         usageHelp = true
     )
-    boolean help;
+    private boolean help;
 
     @Option(
         names = { "-V", "--version" },
         description = "Print version information and exit.",
         versionHelp = true
     )
-    boolean version;
+    private boolean version;
 
     @Parameters(
         index = "0",
         description = "path to first file",
         paramLabel = "filePath1"
     )
-    String filePath1;
+    private String filePath1;
 
     @Parameters(
         index = "1",
         description = "path to second file",
         paramLabel = "filePath2"
     )
-    String filePath2;
+    private String filePath2;
 
     @Override
     public Integer call() throws IOException {
