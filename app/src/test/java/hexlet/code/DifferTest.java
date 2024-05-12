@@ -65,15 +65,15 @@ class DifferTest {
         assertThat(check).isNotBlank();
     }
 
-    private Path resourcePath(String relativePath) {
-        return WORKING_DIR.resolve(relativePath);
+    private String resourcePath(String relativePath) {
+        return WORKING_DIR.resolve(relativePath).toString();
     }
 
     private String resourceContent(String relativePath) {
         var path = resourcePath(relativePath);
 
         try {
-            return Files.readString(path);
+            return Files.readString(Path.of(path));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

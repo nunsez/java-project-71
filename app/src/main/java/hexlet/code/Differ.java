@@ -2,12 +2,11 @@ package hexlet.code;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.TreeSet;
 
 public class Differ {
 
-    public static String generate(Path filePath1, Path filePath2, String formatName) throws IOException {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         var node1 = Parser.parse(filePath1);
         var node2 = Parser.parse(filePath2);
 
@@ -16,7 +15,7 @@ public class Differ {
         return Formatter.format(diff, formatName);
     }
 
-    public static String generate(Path filePath1, Path filePath2) throws IOException {
+    public static String generate(String filePath1, String filePath2) throws IOException {
         return generate(filePath1, filePath2, "stylish");
     }
 

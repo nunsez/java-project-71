@@ -10,8 +10,8 @@ import java.nio.file.Path;
 
 public class Parser {
 
-    public static JsonNode parse(Path filePath) throws IOException {
-        var normalizedPath = filePath.normalize().toAbsolutePath();
+    public static JsonNode parse(String filePath) throws IOException {
+        var normalizedPath = Path.of(filePath).normalize().toAbsolutePath();
         var mapper = getMapper(normalizedPath);
         var content = Files.readString(normalizedPath);
         return mapper.readTree(content);

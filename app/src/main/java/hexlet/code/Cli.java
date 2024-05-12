@@ -4,7 +4,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
 @Command(
@@ -42,14 +41,14 @@ public class Cli implements Callable<Integer> {
         description = "path to first file",
         paramLabel = "filePath1"
     )
-    Path filePath1;
+    String filePath1;
 
     @Parameters(
         index = "1",
         description = "path to second file",
         paramLabel = "filePath2"
     )
-    Path filePath2;
+    String filePath2;
 
     @Override
     public Integer call() throws IOException {
