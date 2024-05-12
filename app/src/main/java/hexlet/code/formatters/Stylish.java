@@ -8,13 +8,14 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Stylish {
+public class Stylish implements Formatter {
 
     private static final String INDENT = " ";
 
     private static final int INDENT_COUNT = 2;
 
-    public static String format(DiffItem diff) {
+    @Override
+    public String format(DiffItem diff) {
         return genStylishLine(diff, 0);
     }
 

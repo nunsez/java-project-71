@@ -12,34 +12,45 @@ class DifferTest {
     private static final Path WORKING_DIR = Path.of("src/test/resources/hexlet/code");
 
     @Test
+    void generateStylishJsonAsDefault() throws IOException {
+        var filePath1 = resourcePath("file1.json");
+        var filePath2 = resourcePath("file2.json");
+        var result = resourceContent("stylish-result.txt");
+
+        var check = Differ.generate(filePath1, filePath2);
+
+        assertThat(check).isEqualTo(result);
+    }
+
+    @Test
+    void generateStylishYaml() throws IOException {
+        var filePath1 = resourcePath("file1.yml");
+        var filePath2 = resourcePath("file2.yaml");
+        var result = resourceContent("stylish-result.txt");
+
+        var check = Differ.generate(filePath1, filePath2, "stylish");
+
+        assertThat(check).isEqualTo(result);
+    }
+
+    @Test
     void generatePlainJson() throws IOException {
-        var filepath1 = resourcePath("plain-1.json");
-        var filepath2 = resourcePath("plain-2.json");
+        var filePath1 = resourcePath("file1.json");
+        var filePath2 = resourcePath("file2.json");
         var result = resourceContent("plain-result.txt");
 
-        var check = Differ.generate(filepath1, filepath2);
+        var check = Differ.generate(filePath1, filePath2, "plain");
 
         assertThat(check).isEqualTo(result);
     }
 
     @Test
     void generatePlainYaml() throws IOException {
-        var filepath1 = resourcePath("plain-1.yml");
-        var filepath2 = resourcePath("plain-2.yaml");
+        var filePath1 = resourcePath("file1.yml");
+        var filePath2 = resourcePath("file2.yaml");
         var result = resourceContent("plain-result.txt");
 
-        var check = Differ.generate(filepath1, filepath2);
-
-        assertThat(check).isEqualTo(result);
-    }
-
-    @Test
-    void generateNestedJson() throws IOException {
-        var filepath1 = resourcePath("nested-1.json");
-        var filepath2 = resourcePath("nested-2.json");
-        var result = resourceContent("nested-result.txt");
-
-        var check = Differ.generate(filepath1, filepath2);
+        var check = Differ.generate(filePath1, filePath2, "plain");
 
         assertThat(check).isEqualTo(result);
     }

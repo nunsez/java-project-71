@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import java.util.List;
 
 public record DiffItem(

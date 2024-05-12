@@ -3,7 +3,6 @@ package hexlet.code;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
@@ -41,20 +40,20 @@ public class Cli implements Callable<Integer> {
     @Parameters(
         index = "0",
         description = "path to first file",
-        paramLabel = "filepath1"
+        paramLabel = "filePath1"
     )
-    Path filepath1;
+    Path filePath1;
 
     @Parameters(
         index = "1",
         description = "path to second file",
-        paramLabel = "filepath2"
+        paramLabel = "filePath2"
     )
-    Path filepath2;
+    Path filePath2;
 
     @Override
     public Integer call() throws IOException {
-        var diff = Differ.generate(filepath1, filepath2);
+        var diff = Differ.generate(filePath1, filePath2);
         System.out.println(diff);
         return 0;
     }
